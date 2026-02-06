@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris Reynolds - Product Leader & AI Builder</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: #f8fafc;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .name {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+    
+    .title {
+      font-size: 20px;
+      color: #16a34a;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .contact a {
+      color: #16a34a;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact a:hover { color: #15803d; text-decoration: underline; }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #16a34a;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    
+    /* Career Phases */
+    .phase {
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .phase:hover { border-color: #16a34a; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1); }
+
+    .phase-header {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .phase-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .phase-icon-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .phase.open .phase-icon-btn {
+      background: #16a34a;
+      border: 2px solid #16a34a;
+    }
+
+    .phase-icon-btn:focus {
+      background: #16a34a;
+      border: 2px solid #16a34a;
+      outline: none;
+    }
+
+    .phase-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #16a34a;
+      transition: fill 0.3s ease;
+    }
+
+    .phase.open .phase-icon-btn svg,
+    .phase-icon-btn:focus svg {
+      fill: #ffffff;
+    }
+
+    .phase-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .phase-period {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .phase-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .phase.open .phase-toggle { background: #16a34a; transform: rotate(180deg); }
+    .phase.open .phase-toggle svg { stroke: #ffffff; }
+    
+    .phase-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    
+    .phase.open .phase-content { max-height: 2000px; }
+    
+    .phase-inner { padding: 0 24px 24px; }
+    
+    /* Role Cards */
+    .role {
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+    }
+    
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .role-title { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .role-company { font-size: 15px; color: #16a34a; font-weight: 600; }
+    .role-company a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+    .role-company a:hover { text-decoration: underline; }
+    .role-meta { text-align: right; font-size: 12px; color: #64748b; }
+    .role-description { font-size: 14px; color: #475569; margin-bottom: 16px; }
+
+    /* Highlights */
+    .highlights-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #16a34a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    
+    .highlights { list-style: none; margin-bottom: 16px; }
+    .highlights li {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .highlights li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    /* Skills Tags */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      padding: 4px 10px;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-category {
+      padding: 20px;
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      border-color: #16a34a;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+    }
+
+    .skill-category-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #dcfce7;
+    }
+
+    .skill-tag-alt {
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #475569;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .skill-tag-alt:hover {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #15803d;
+    }
+
+    /* Education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .education-card {
+      padding: 18px;
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .education-card:hover {
+      border-color: #16a34a;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+    }
+
+    .education-degree {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .education-school {
+      font-size: 14px;
+      color: #16a34a;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .education-note {
+      font-size: 13px;
+      color: #64748b;
+      font-style: italic;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name">Chris Reynolds</h1>
+      <p class="title">Product Leader • AI Builder • Design Engineer</p>
+      <div class="contact">
+        <span>📍 Long Beach, CA • <a href="mailto:reynoldscg@gmail.com">reynoldscg@gmail.com</a> • <a href="https://www.linkedin.com/in/reynoldscg/" target="_blank">LinkedIn</a> • <a href="https://github.com/Reynoldscg" target="_blank">GitHub</a></span>
+      </div>
+    </header>
+
+    <!-- Career Experience -->
+    <section class="experience" style="margin-bottom: 50px;">
+      <h2 class="section-title">Career Experience</h2>
+
+      <!-- Phase 1 -->
+      <div class="phase open">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <button class="phase-icon-btn" disabled>
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2v82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9V380.8c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+            </svg>
+          </button>
+          <div class="phase-text">
+            <div class="phase-title">Current Role</div>
+            <div class="phase-period">April 2024 — Present</div>
+          </div>
+          <div class="phase-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-inner">
+            <div class="role">
+              <div class="role-header">
+                <div>
+                  <div class="role-title">Staff Product Manager</div>
+                  <div class="role-company">
+                    <a href="https://www.collectors.com" target="_blank">
+                      Collectors
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="role-meta">
+                  <div>April 2024 — Present</div>
+                  <div>Santa Ana, CA</div>
+                </div>
+              </div>
+              <p class="role-description">
+                I build AI-powered products at Collectors that eliminate operational bottlenecks and deliver fast, automated grading workflows.
+              </p>
+              <div class="highlights-label">Key Highlights</div>
+              <ul class="highlights">
+                <li><strong>Modernized global Operations infrastructure</strong> by designing and deploying AI-driven tools, both frontend and backend, while leveraging rapid prototyping to gain immediate customer buy-in and to deliver a more efficient UI/UX for operations.</li>
+                <li><strong>Architected and shipped</strong> a new end-to-end ecosystem that eliminated manual workflows by re-engineering the integration between multiple internal teams, directly reducing mis-shipments and operational overhead by 20% and increasing overall customer sentiment.</li>
+                <li><strong>Developed a cohesive UX</strong> across all internal grading tools, resulting in a significant boost in operator morale and time-to-train new hires.</li>
+              </ul>
+              <div class="skills-list">
+                <span class="skill-tag">AI/ML Product Development</span>
+                <span class="skill-tag">Operations Automation</span>
+                <span class="skill-tag">UX Design</span>
+                <span class="skill-tag">Rapid Prototyping</span>
+                <span class="skill-tag">Cross-functional Leadership</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <button class="phase-icon-btn" disabled>
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/>
+            </svg>
+          </button>
+          <div class="phase-text">
+            <div class="phase-title">Previous Experience</div>
+            <div class="phase-period">2014 — 2024</div>
+          </div>
+          <div class="phase-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-inner">
+            <!-- Role 1: Google -->
+            <div class="role">
+              <div class="role-header">
+                <div>
+                  <div class="role-title">Senior Product Manager</div>
+                  <div class="role-company">
+                    <a href="https://www.google.com/" target="_blank">
+                      Google
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="role-meta">
+                  <div>2021 — 2024</div>
+                  <div>Los Angeles, CA</div>
+                </div>
+              </div>
+              <p class="role-description">
+                Led the transformation of Google's customer support and intelligence platform.
+              </p>
+              <div class="highlights-label">Key Highlights</div>
+              <ul class="highlights">
+                <li><strong>Self-Service Support:</strong> Launched an AI-powered self-service support ecosystem. Optimized the helpfulness of automated flows, reducing dependency on human agents by 30%+ while maintaining high resolution scores.</li>
+                <li><strong>Churn Reduction:</strong> Directed the roadmap for ML-driven personalization features. Identified friction points in the user journey and deployed proactive support interventions to reduce churn and improve sentiment across millions of users.</li>
+                <li><strong>Scalable Solutions:</strong> Managed the rollout of support capabilities that served millions of users, ensuring that help was accessible, accurate, and scalable across diverse user segments.</li>
+              </ul>
+              <div class="skills-list">
+                <span class="skill-tag">Product Management</span>
+                <span class="skill-tag">AI/ML Product Development</span>
+                <span class="skill-tag">Operations Automation</span>
+                <span class="skill-tag">UX Design</span>
+                <span class="skill-tag">Rapid Prototyping</span>
+                <span class="skill-tag">Cross-functional Leadership</span>
+              </div>
+            </div>
+
+            <!-- Role 2: Ring/Amazon -->
+            <div class="role">
+              <div class="role-header">
+                <div>
+                  <div class="role-title">Senior Product Manager</div>
+                  <div class="role-company">
+                    <a href="https://www.ring.com/" target="_blank">
+                      Amazon (Ring)
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="role-meta">
+                  <div>2020 — 2021</div>
+                  <div>Los Angeles, CA</div>
+                </div>
+              </div>
+              <p class="role-description">
+                Owned CRM and Support Tooling for the Ring Smart Home ecosystem.
+              </p>
+              <div class="highlights-label">Key Highlights</div>
+              <ul class="highlights">
+                <li><strong>Ticket Reduction:</strong> Delivered automation features for the CRM ecosystem that reduced customer service triage tickets by 29%. Focused on proactively solving user issues before they needed to contact a human.</li>
+                <li><strong>Resolution Efficiency:</strong> Collaborated with Engineering to launch scalable analytics tools for support agents, improving issue resolution efficiency by 35%.</li>
+                <li><strong>Post-Purchase Experience:</strong> Defined the cross-channel strategy to improve retention and engagement, ensuring customers felt supported throughout the entire device lifecycle.</li>
+              </ul>
+              <div class="skills-list">
+                <span class="skill-tag">Product Management</span>
+                <span class="skill-tag">UX Design</span>
+                <span class="skill-tag">Cross-functional Leadership</span>
+              </div>
+            </div>
+
+            <!-- Role 3: Amazon Robotics -->
+            <div class="role">
+              <div class="role-header">
+                <div>
+                  <div class="role-title">Senior Innovation and Design Engineer</div>
+                  <div class="role-company">
+                    <a href="https://www.amazon.com/" target="_blank">
+                      Amazon
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="role-meta">
+                  <div>2015 — 2020</div>
+                  <div>Seattle, WA</div>
+                </div>
+              </div>
+              <p class="role-description">
+                Led automation strategy and design initiatives for Amazon Robotics and Amazon Make-On-Demand.
+              </p>
+              <div class="highlights-label">Key Highlights</div>
+              <ul class="highlights">
+                <li><strong>Process Productization:</strong> Championed the internal productization of automation solutions. Transformed bespoke engineering fixes into scalable, repeatable design kits used across global manufacturing sites.</li>
+                <li><strong>Cost Optimization:</strong> Designed robotic workstations that reduced unit costs by $0.011 at massive scale, demonstrating a rigorous focus on operational metrics and efficiency.</li>
+              </ul>
+              <div class="skills-list">
+                <span class="skill-tag">Automation Strategy</span>
+                <span class="skill-tag">Cost Optimization</span>
+                <span class="skill-tag">Process Productization</span>
+                <span class="skill-tag">AutoCAD</span>
+                <span class="skill-tag">SolidWorks</span>
+              </div>
+            </div>
+
+            <!-- Role 4: RH2 Engineering -->
+            <div class="role">
+              <div class="role-header">
+                <div>
+                  <div class="role-title">Structural Engineer</div>
+                  <div class="role-company">
+                    <a href="https://rh2.com/" target="_blank">
+                      RH2 Engineering
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="role-meta">
+                  <div>2014 — 2015</div>
+                  <div>Bothell, WA</div>
+                </div>
+              </div>
+              <p class="role-description">
+                Structural design and analysis for commercial and residential buildings, water treatment plants, and other civil infrastructure.
+              </p>
+              <div class="highlights-label">Key Highlights</div>
+              <ul class="highlights">
+                <li><strong>AutoCAD Automation:</strong> Created automation using AutoLISP to generate templatized, repeatable structures for site layout and prep.</li>
+              </ul>
+              <div class="skills-list">
+                <span class="skill-tag">AutoCAD</span>
+                <span class="skill-tag">Matlab</span>
+                <span class="skill-tag">Finite Element Analysis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" style="margin-bottom: 50px;">
+      <h2 class="section-title">Core Skills & Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-category-title">Product Management</div>
+          <div class="skills-list">
+            <span class="skill-tag-alt">AI/ML Product Development</span>
+            <span class="skill-tag-alt">Cross-functional Leadership</span>
+            <span class="skill-tag-alt">Roadmap Strategy</span>
+            <span class="skill-tag-alt">Operations Automation</span>
+            <span class="skill-tag-alt">Process Productization</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Technical & Engineering Skills</div>
+          <div class="skills-list">
+            <span class="skill-tag-alt">SQL</span>
+            <span class="skill-tag-alt">Python</span>
+            <span class="skill-tag-alt">Figma</span>
+            <span class="skill-tag-alt">Data Analysis</span>
+            <span class="skill-tag-alt">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Design</div>
+          <div class="skills-list">
+            <span class="skill-tag-alt">Rapid Prototyping</span>
+            <span class="skill-tag-alt">UX Design</span>
+            <span class="skill-tag-alt">UI/UX Optimization</span>
+            <span class="skill-tag-alt">User Journey Mapping</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section" style="margin-bottom: 50px;">
+      <h2 class="section-title">Education</h2>
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="education-degree">Master of Business Administration</div>
+          <div class="education-school">Arizona State University</div>
+          <div class="education-note">2019 • Strategy and Supply Chain Management</div>
+        </div>
+        <div class="education-card">
+          <div class="education-degree">Bachelor of Science in Civil Engineering</div>
+          <div class="education-school">Washington State University</div>
+          <div class="education-note">2014 • Steel Bridge, Concrete Canoe, Formula SAE</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    function togglePhase(header) {
+      const phase = header.parentElement;
+      phase.classList.toggle('open');
+    }
+
+    // Add animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.phase, .skill-category, .education-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Trigger initial animations
+    setTimeout(() => {
+      document.querySelectorAll('.phase, .skill-category, .education-card').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }, 100);
+  </script>
+</body>
+</html>
+
+
