@@ -3,680 +3,945 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chris Reynolds - Product Leader & AI Builder</title>
+  <title>Chris Reynolds — Product Leader & AI Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    /* ── Variables ─────────────────────────────────────────── */
+    :root {
+      --teal:       #1a5c55;
+      --teal-mid:   #2a7a70;
+      --teal-light: #e6f0ef;
+      --teal-rule:  #c2d9d6;
+      --black:      #151515;
+      --mid:        #3a3a3a;
+      --muted:      #6b7280;
+      --faint:      #9ca3af;
+      --bg:         #faf9f7;
+      --surface:    #ffffff;
+      --border:     #e5e7eb;
+      --border-hover: #c2d9d6;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: #f8fafc;
-      color: #1a1a1a;
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--black);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    
-    .container {
-      max-width: 900px;
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ───────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 249, 247, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 860px;
       margin: 0 auto;
-      padding: 60px 24px;
-    }
-    
-    /* Header */
-    .header {
-      text-align: center;
-      margin-bottom: 50px;
-      animation: fadeInUp 0.6s ease-out;
-    }
-    
-    .name {
-      font-size: 42px;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
-    }
-    
-    .title {
-      font-size: 20px;
-      color: #16a34a;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .contact {
+      padding: 0 24px;
+      height: 52px;
       display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: #64748b;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .contact a {
-      color: #16a34a;
-      text-decoration: none;
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.3px;
       transition: color 0.2s;
     }
 
-    .contact a:hover { color: #15803d; text-decoration: underline; }
+    .nav-links a:hover { color: var(--teal); }
 
-    /* Section Headers */
-    .section-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #16a34a;
-      letter-spacing: 1.5px;
+    /* ── Layout ────────────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    
-    /* Career Phases */
-    .phase {
-      background: #ffffff;
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
+      color: var(--teal);
       margin-bottom: 16px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .phase:hover { border-color: #16a34a; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1); }
-
-    .phase-header {
-      padding: 20px 24px;
-      cursor: pointer;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 16px;
-      user-select: none;
     }
 
-    .phase-title {
-      font-size: 18px;
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(36px, 6vw, 54px);
       font-weight: 700;
-      color: #1a1a1a;
+      color: var(--black);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
     }
 
-    .phase-icon-btn {
-      width: 40px;
-      height: 40px;
-      border: none;
-      border-radius: 8px;
-      background: #f8fafc;
+    .hero-title {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .hero-summary {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--mid);
+      font-weight: 300;
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .hero-summary strong {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .hero-links {
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--teal-rule);
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      transition: all 0.2s;
+      background: var(--surface);
+    }
+
+    .hero-link:hover {
+      background: var(--teal-light);
+      border-color: var(--teal);
+    }
+
+    .hero-link svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
       flex-shrink: 0;
     }
 
-    .phase.open .phase-icon-btn {
-      background: #16a34a;
-      border: 2px solid #16a34a;
-    }
+    /* ── Section ───────────────────────────────────────────── */
+    .section { margin-bottom: 56px; }
 
-    .phase-icon-btn:focus {
-      background: #16a34a;
-      border: 2px solid #16a34a;
-      outline: none;
-    }
-
-    .phase-icon-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #16a34a;
-      transition: fill 0.3s ease;
-    }
-
-    .phase.open .phase-icon-btn svg,
-    .phase-icon-btn:focus svg {
-      fill: #ffffff;
-    }
-
-    .phase-text {
+    .section-header {
       display: flex;
-      flex-direction: column;
-      gap: 0;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
-    .phase-period {
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--teal-rule);
+    }
+
+    /* ── Experience Accordions ─────────────────────────────── */
+    .exp-item {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: var(--surface);
+      transition: border-color 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .exp-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .exp-item:hover { border-color: var(--border-hover); }
+    .exp-item.open  { border-color: var(--teal-rule); box-shadow: 0 2px 12px rgba(26,92,85,0.07); }
+
+    .exp-trigger {
+      width: 100%;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .exp-trigger-left { display: flex; flex-direction: column; gap: 3px; }
+
+    .exp-company {
+      font-family: 'Lora', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .exp-meta {
       font-size: 13px;
-      color: #64748b;
-      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 300;
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
-    .phase-toggle {
-      width: 28px;
-      height: 28px;
+    .exp-meta-dot {
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
-      background: #f1f5f9;
+      background: var(--faint);
+      flex-shrink: 0;
+    }
+
+    .exp-chevron {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
+      flex-shrink: 0;
+      transition: background 0.25s, transform 0.3s;
     }
 
-    .phase.open .phase-toggle { background: #16a34a; transform: rotate(180deg); }
-    .phase.open .phase-toggle svg { stroke: #ffffff; }
-    
-    .phase-content {
+    .exp-chevron svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s;
+    }
+
+    .exp-item.open .exp-chevron {
+      background: var(--teal);
+      transform: rotate(180deg);
+    }
+
+    .exp-item.open .exp-chevron svg { stroke: white; }
+
+    .exp-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
-    .phase.open .phase-content { max-height: 2000px; }
-    
-    .phase-inner { padding: 0 24px 24px; }
-    
-    /* Role Cards */
-    .role {
-      padding: 20px;
-      background: #f8fafc;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 12px;
-    }
-    
-    .role-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    
-    .role-title { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
-    .role-company { font-size: 15px; color: #16a34a; font-weight: 600; }
-    .role-company a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
-    .role-company a:hover { text-decoration: underline; }
-    .role-meta { text-align: right; font-size: 12px; color: #64748b; }
-    .role-description { font-size: 14px; color: #475569; margin-bottom: 16px; }
 
-    /* Highlights */
-    .highlights-label {
-      font-size: 11px;
+    .exp-item.open .exp-body { max-height: 1200px; }
+
+    .exp-inner {
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+
+    .exp-role-desc {
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      padding: 14px 0 12px;
+      line-height: 1.6;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .exp-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
       font-weight: 700;
-      color: #16a34a;
-      letter-spacing: 1px;
+    }
+
+    .exp-bullets li strong { color: var(--black); font-weight: 600; }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 4px;
+    }
+
+    .tag {
+      padding: 3px 10px;
+      background: var(--teal-light);
+      border: 1px solid var(--teal-rule);
+      border-radius: 3px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.2px;
+    }
+
+    /* ── Projects ──────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 4px 16px rgba(26,92,85,0.08);
+      transform: translateY(-2px);
+    }
+
+    .project-card.coming-soon {
+      border-style: dashed;
+      background: var(--bg);
+    }
+
+    .project-card.coming-soon:hover { transform: none; box-shadow: none; }
+
+    .project-status {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-    
-    .highlights { list-style: none; margin-bottom: 16px; }
-    .highlights li {
-      font-size: 14px;
-      color: #475569;
-      margin-bottom: 6px;
-      padding-left: 16px;
-      position: relative;
-    }
-    .highlights li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: #16a34a;
-      font-weight: 700;
-    }
 
-    /* Skills Tags */
-    .skills-list { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-tag {
-      padding: 4px 10px;
-      background: #dcfce7;
-      border: 1px solid #bbf7d0;
-      border-radius: 4px;
-      font-size: 12px;
-      color: #15803d;
+    .status-live   { color: var(--teal); }
+    .status-soon   { color: var(--faint); }
+    .status-wip    { color: #b45309; }
+
+    .project-name {
+      font-family: 'Lora', serif;
+      font-size: 16px;
       font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
     }
 
-    /* Skills Grid */
+    .project-card.coming-soon .project-name { color: var(--faint); }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+
+    .project-card.coming-soon .project-desc { color: var(--faint); font-style: italic; }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--teal);
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover { gap: 8px; }
+
+    .project-link svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ── Skills ────────────────────────────────────────────── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
     }
 
-    .skill-category {
-      padding: 20px;
-      background: #ffffff;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      transition: all 0.3s ease;
+    .skill-group {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      opacity: 0;
+      transform: translateY(12px);
     }
 
-    .skill-category:hover {
-      border-color: #16a34a;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+    .skill-group.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .skill-category-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #1a1a1a;
+    .skill-group-title {
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
       margin-bottom: 12px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #dcfce7;
+      border-bottom: 1px solid var(--teal-light);
     }
 
-    .skill-tag-alt {
-      padding: 4px 10px;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 4px;
-      font-size: 12px;
-      color: #475569;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      cursor: default;
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
 
-    .skill-tag-alt:hover {
-      background: #dcfce7;
-      border-color: #bbf7d0;
-      color: #15803d;
+    .skill-item {
+      font-size: 13px;
+      color: var(--mid);
+      font-weight: 300;
+      padding: 2px 0;
     }
 
-    /* Education */
-    .education-grid {
+    /* ── Education ─────────────────────────────────────────── */
+    .edu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 12px;
     }
 
-    .education-card {
-      padding: 18px;
-      background: #ffffff;
-      border: 2px solid #e5e7eb;
+    .edu-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
       border-radius: 8px;
-      transition: all 0.3s ease;
+      padding: 20px;
     }
 
-    .education-card:hover {
-      border-color: #16a34a;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
-    }
-
-    .education-degree {
+    .edu-degree {
+      font-family: 'Lora', serif;
       font-size: 15px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-    }
-
-    .education-school {
-      font-size: 14px;
-      color: #16a34a;
       font-weight: 600;
+      color: var(--black);
       margin-bottom: 4px;
     }
 
-    .education-note {
+    .edu-school {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .edu-detail {
       font-size: 13px;
-      color: #64748b;
+      color: var(--muted);
+      font-weight: 300;
       font-style: italic;
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* ── Footer ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-name {
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--teal); }
+
+    /* ── Animations ────────────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 48px 0 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-name">Chris Reynolds</span>
+      <ul class="nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <h1 class="name">Chris Reynolds</h1>
-      <p class="title">Product Leader • AI Product Leader • Design Engineer</p>
-      <div class="contact">
-        <span>📍 Long Beach, CA • <a href="mailto:reynoldscg@gmail.com">reynoldscg@gmail.com</a> • <a href="https://www.linkedin.com/in/reynoldscg/" target="_blank">LinkedIn</a> • <a href="https://github.com/Reynoldscg" target="_blank">GitHub</a></span>
+    <section class="hero">
+      <div class="hero-label">Staff Product Manager · Long Beach, CA</div>
+      <h1 class="hero-name">Chris Reynolds</h1>
+      <p class="hero-title">AI Product · Operations Automation · Platform Design</p>
+      <p class="hero-summary">
+        I build AI-powered automation systems that turn expensive manual operations into scalable platforms.
+        At Google, I led the YouTube Help Center intelligence platform that deflected <strong>30% of all support contacts</strong>
+        before they reached a human agent — at $19 per contact, compounding into tens of millions in annual savings.
+        The combined operational impact from my work at Google, Amazon, and Collectors exceeds <strong>$50M</strong>.
+        I'm technical enough to prototype in Python and SQL, and experienced enough to know which problems
+        actually need AI and which ones need a better process.
+      </p>
+      <div class="hero-links">
+        <a class="hero-link" href="mailto:reynoldscg@gmail.com">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a class="hero-link" href="https://www.linkedin.com/in/reynoldscg" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="hero-link" href="https://github.com/Reynoldscg" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="hero-link" href="https://reynoldscg.github.io/" target="_blank">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Website
+        </a>
       </div>
-    </header>
+    </section>
 
-    <!-- Career Experience -->
-    <section class="experience" style="margin-bottom: 50px;">
-      <h2 class="section-title">Career Experience</h2>
-
-      <!-- Phase 1 -->
-      <div class="phase open">
-        <div class="phase-header" onclick="togglePhase(this)">
-          <button class="phase-icon-btn" disabled>
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-              <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2v82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9V380.8c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
-            </svg>
-          </button>
-          <div class="phase-text">
-            <div class="phase-title">Current Role</div>
-            <div class="phase-period">April 2024 — Present</div>
-          </div>
-          <div class="phase-toggle">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
-        </div>
-        <div class="phase-content">
-          <div class="phase-inner">
-            <div class="role">
-              <div class="role-header">
-                <div>
-                  <div class="role-title">Staff Product Manager</div>
-                  <div class="role-company">
-                    <a href="https://www.collectors.com" target="_blank">
-                      Collectors
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <div class="role-meta">
-                  <div>April 2024 — Present</div>
-                  <div>Santa Ana, CA</div>
-                </div>
-              </div>
-              <p class="role-description">
-                Own AI-driven modernization of end-to-end grading operations, spanning multiple internal platforms, cross-functional teams, and high-volume authentication workflows.
-              </p>
-              <div class="highlights-label">Key Highlights</div>
-              <ul class="highlights">
-                <li><strong>Designed and deployed</strong> AI-powered tools across frontend and backend systems, using rapid prototyping to drive early stakeholder alignment and deliver intuitive, high-throughput operator experiences</li>
-                <li><strong>Architected and shipped</strong> an internal AI-enabled workflow platform that eliminated manual handoffs across teams, reducing mis-shipments and operational overhead by 20% while improving overall customer sentiment</li>
-                <li><strong>Established a cohesive UX</strong> and interaction model across internal grading tools, resulting in a 40% reduction in time-to-train for new hires and a measurable increase in operator morale</li>
-              </ul>
-              <div class="highlights-label">Signature Project</div>
-              <ul class="highlights">
-                <li><strong>AI-Driven Research Automation & Spec Bypass:</strong> Led the development of automated eligibility and research workflows to accelerate grading throughput while maintaining accuracy and trust</li>
-              </ul>
-              <div class="skills-list">
-                <span class="skill-tag">AI/ML Product Development</span>
-                <span class="skill-tag">Operations Automation</span>
-                <span class="skill-tag">UX Design</span>
-                <span class="skill-tag">Rapid Prototyping</span>
-                <span class="skill-tag">Cross-functional Leadership</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-header">
+        <h2 class="section-title">Experience</h2>
+        <div class="section-rule"></div>
       </div>
 
-      <!-- Phase 2 -->
-      <div class="phase">
-        <div class="phase-header" onclick="togglePhase(this)">
-          <button class="phase-icon-btn" disabled>
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-              <path d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/>
-            </svg>
-          </button>
-          <div class="phase-text">
-            <div class="phase-title">Previous Experience</div>
-            <div class="phase-period">2014 — 2024</div>
+      <!-- Collectors -->
+      <div class="exp-item open" data-animate>
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <div class="exp-trigger-left">
+            <span class="exp-company">Collectors (PSA / PCGS)</span>
+            <span class="exp-meta">
+              Staff Product Manager
+              <span class="exp-meta-dot"></span>
+              Santa Ana, CA
+              <span class="exp-meta-dot"></span>
+              2024 – Present
+            </span>
           </div>
-          <div class="phase-toggle">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <div class="exp-chevron">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="exp-body">
+          <div class="exp-inner">
+            <p class="exp-role-desc">
+              Leading AI transformation of grading operations at the world's largest trading card, comic, and coin authentication platform.
+            </p>
+            <ul class="exp-bullets">
+              <li>Architected a multi-modal AI pipeline combining LLM-based image matching, counterfeit detection, and quality grading with computer vision QC — automating eligibility decisions previously requiring manual expert review and capping throughput at scale.</li>
+              <li>Delivered a <strong>40% throughput improvement</strong> by redesigning the end-to-end operational flow, combining AI/ML automation with a ground-up UX overhaul of the grading workflow.</li>
+              <li>Reduced mis-shipments and cross-team handoffs by <strong>20%</strong> through a workflow platform redesign across ~30k daily submissions, with measurable improvement to operational cost and customer satisfaction.</li>
+              <li>Consolidated five legacy desktop tools into a single unified operator platform, cutting new-hire training time by 40% and measurably improving operator morale.</li>
+              <li>Secured AI roadmap buy-in from Director through C-suite <strong>three weeks faster</strong> than prior process by prototyping features rather than writing specs.</li>
+              <li>Manages a team of 3 PMs and mentors 2 additional product contributors.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">AI/ML Product</span>
+              <span class="tag">Operations Automation</span>
+              <span class="tag">Platform Design</span>
+              <span class="tag">UX Overhaul</span>
+              <span class="tag">Cross-functional Leadership</span>
+            </div>
           </div>
         </div>
-        <div class="phase-content">
-          <div class="phase-inner">
-            <!-- Role 1: Google -->
-            <div class="role">
-              <div class="role-header">
-                <div>
-                  <div class="role-title">Senior Product Manager</div>
-                  <div class="role-company">
-                    <a href="https://www.google.com/" target="_blank">
-                      Google
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <div class="role-meta">
-                  <div>2021 — 2024</div>
-                  <div>Los Angeles, CA</div>
-                </div>
-              </div>
-              <p class="role-description">
-                Led product strategy and execution for Google's customer support and intelligence platform, focusing on AI-powered self-service, personalization, and scalable global delivery.
-              </p>
-              <div class="highlights-label">Key Highlights</div>
-              <ul class="highlights">
-                <li><strong>Launched an AI-powered</strong> self-service support ecosystem that deflected 30%+ of customer issues from human agents while maintaining high resolution quality across millions of users</li>
-                <li><strong>Defined and sequenced</strong> the roadmap for ML-driven personalization features, balancing automation gains against customer experience risk to reduce churn and improve sentiment across diverse user segments</li>
-                <li><strong>Owned global rollout</strong> of support capabilities serving millions of users, ensuring solutions were accurate, discoverable, and scalable across regions and languages</li>
-              </ul>
-              <div class="skills-list">
-                <span class="skill-tag">Product Management</span>
-                <span class="skill-tag">AI/ML Product Development</span>
-                <span class="skill-tag">Operations Automation</span>
-                <span class="skill-tag">UX Design</span>
-                <span class="skill-tag">Rapid Prototyping</span>
-                <span class="skill-tag">Cross-functional Leadership</span>
-              </div>
-            </div>
+      </div>
 
-            <!-- Role 2: Ring/Amazon -->
-            <div class="role">
-              <div class="role-header">
-                <div>
-                  <div class="role-title">Senior Product Manager</div>
-                  <div class="role-company">
-                    <a href="https://www.ring.com/" target="_blank">
-                      Amazon (Ring)
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <div class="role-meta">
-                  <div>2020 — 2021</div>
-                  <div>Los Angeles, CA</div>
-                </div>
-              </div>
-              <p class="role-description">
-                Owned CRM and customer support tooling for the Ring smart home ecosystem, with an emphasis on automation, analytics, and proactive issue resolution.
-              </p>
-              <div class="highlights-label">Key Highlights</div>
-              <ul class="highlights">
-                <li><strong>Delivered automation features</strong> across the CRM ecosystem that reduced customer service triage tickets by 29% through proactive identification and resolution of common issues</li>
-                <li><strong>Partnered with engineering and data teams</strong> to launch analytics tools for support agents, improving issue resolution efficiency by 35%</li>
-                <li><strong>Defined cross-channel support strategy</strong> to improve retention and engagement across the customer lifecycle</li>
-              </ul>
-              <div class="skills-list">
-                <span class="skill-tag">Product Management</span>
-                <span class="skill-tag">UX Design</span>
-                <span class="skill-tag">Cross-functional Leadership</span>
-              </div>
+      <!-- Google -->
+      <div class="exp-item" data-animate>
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <div class="exp-trigger-left">
+            <span class="exp-company">Google</span>
+            <span class="exp-meta">
+              Senior Product Manager
+              <span class="exp-meta-dot"></span>
+              Los Angeles, CA
+              <span class="exp-meta-dot"></span>
+              2021 – 2024
+            </span>
+          </div>
+          <div class="exp-chevron">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="exp-body">
+          <div class="exp-inner">
+            <p class="exp-role-desc">
+              Product lead for YouTube Help Center Support Intelligence — AI-powered deflection and self-service automation at one of the world's highest-volume consumer support platforms.
+            </p>
+            <ul class="exp-bullets">
+              <li>Deployed pre-Gemini Google ML Infrastructure to power YouTube's help center personalization layer, deflecting <strong>30%+ of all support contacts</strong> before case creation — at $19 per contact, representing tens of millions in annual cost avoidance across YouTube's global support volume.</li>
+              <li>Designed the signal model that mined support history, behavioral trends, and engagement signals to predict and intercept high-intent users before they escalated to agent contact — without degrading resolution quality.</li>
+              <li>Built the ML audience segmentation model balancing automation aggressiveness against churn risk, protecting high-value account cohorts while expanding self-service coverage across high-volume, low-complexity contact types.</li>
+              <li>Owned support content accuracy and discoverability across multiple regions and languages, coordinating engineering, data science, and CX across three organizations without direct authority.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">ML Infrastructure</span>
+              <span class="tag">Support Intelligence</span>
+              <span class="tag">Personalization</span>
+              <span class="tag">Global Scale</span>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Role 3: Amazon Robotics -->
-            <div class="role">
-              <div class="role-header">
-                <div>
-                  <div class="role-title">Senior Innovation and Design Engineer</div>
-                  <div class="role-company">
-                    <a href="https://www.amazon.com/" target="_blank">
-                      Amazon
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <div class="role-meta">
-                  <div>2015 — 2020</div>
-                  <div>Seattle, WA</div>
-                </div>
-              </div>
-              <p class="role-description">
-                Led automation strategy and design initiatives for Amazon Robotics and Make-On-Demand, focusing on scalable manufacturing and fulfillment solutions.
-              </p>
-              <div class="highlights-label">Key Highlights</div>
-              <ul class="highlights">
-                <li><strong>Productized bespoke automation solutions</strong> into reusable design systems and kits adopted across global manufacturing sites</li>
-                <li><strong>Designed robotic workstations</strong> that reduced per-unit costs by $0.011 at massive production scale, demonstrating disciplined focus on operational metrics and efficiency</li>
-              </ul>
-              <div class="skills-list">
-                <span class="skill-tag">Automation Strategy</span>
-                <span class="skill-tag">Cost Optimization</span>
-                <span class="skill-tag">Process Productization</span>
-                <span class="skill-tag">AutoCAD</span>
-                <span class="skill-tag">SolidWorks</span>
-              </div>
+      <!-- Amazon Ring -->
+      <div class="exp-item" data-animate>
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <div class="exp-trigger-left">
+            <span class="exp-company">Amazon (Ring)</span>
+            <span class="exp-meta">
+              Senior Product Manager
+              <span class="exp-meta-dot"></span>
+              Los Angeles, CA
+              <span class="exp-meta-dot"></span>
+              2020 – 2021
+            </span>
+          </div>
+          <div class="exp-chevron">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="exp-body">
+          <div class="exp-inner">
+            <p class="exp-role-desc">
+              Owned CRM and support automation for Ring's global customer experience organization, serving agents across 6 languages worldwide.
+            </p>
+            <ul class="exp-bullets">
+              <li>Designed and built <strong>Neighbor Dashboard</strong>, a custom Salesforce-integrated agent workstation replacing Ring's legacy Admin Panel — surfacing the most diagnostically relevant customer context upfront, cutting triage volume by 29% and improving resolution efficiency by 35%.</li>
+              <li>Built automatic contact-intent detection that surfaced predicted reason-for-contact to agents in real time, enabling faster diagnosis and deflection of the most common support categories before case escalation.</li>
+              <li>Led enterprise-wide PII masking across all agent tooling and defined the multi-year product strategy for integrating Ring's security and camera system data into the global support platform.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">CRM</span>
+              <span class="tag">Support Automation</span>
+              <span class="tag">Salesforce</span>
+              <span class="tag">Contact Intelligence</span>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Role 4: RH2 Engineering -->
-            <div class="role">
-              <div class="role-header">
-                <div>
-                  <div class="role-title">Structural Engineer</div>
-                  <div class="role-company">
-                    <a href="https://rh2.com/" target="_blank">
-                      RH2 Engineering
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <div class="role-meta">
-                  <div>2014 — 2015</div>
-                  <div>Bothell, WA</div>
-                </div>
-              </div>
-              <p class="role-description">
-                Structural design and analysis for commercial and residential buildings, water treatment plants, and other civil infrastructure.
-              </p>
-              <div class="highlights-label">Key Highlights</div>
-              <ul class="highlights">
-                <li><strong>AutoCAD Automation:</strong> Created automation using AutoLISP to generate templatized, repeatable structures for site layout and prep.</li>
-              </ul>
-              <div class="skills-list">
-                <span class="skill-tag">AutoCAD</span>
-                <span class="skill-tag">Matlab</span>
-                <span class="skill-tag">Finite Element Analysis</span>
-              </div>
+      <!-- Amazon Robotics -->
+      <div class="exp-item" data-animate>
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <div class="exp-trigger-left">
+            <span class="exp-company">Amazon</span>
+            <span class="exp-meta">
+              Sr. Innovation &amp; Design Engineer — Robotics &amp; Make-on-Demand
+              <span class="exp-meta-dot"></span>
+              Seattle, WA
+              <span class="exp-meta-dot"></span>
+              2015 – 2020
+            </span>
+          </div>
+          <div class="exp-chevron">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="exp-body">
+          <div class="exp-inner">
+            <p class="exp-role-desc">
+              Led end-to-end design of fulfillment and robotics systems for Amazon's global network, managing a team of 4 engineers.
+            </p>
+            <ul class="exp-bullets">
+              <li>Invented and led full design of the <strong>ARSAW</strong>, Amazon's primary semi-automated pick station deployed across all Robotics Fulfillment Centers globally — delivering <strong>$0.011 per-unit savings</strong> compounding to millions annually across billions of units processed; holds <strong>5 patents</strong> from this system and related innovations.</li>
+              <li>Personally led building design for <strong>11 Amazon facilities</strong> from concept through launch — spanning full-scale Amazon Robotics, make-on-demand, and manual operations — covering topology optimization, site planning, operational flow, vendor coordination, and execution.</li>
+              <li>Standardized bespoke automation solutions into reusable design systems adopted globally across Amazon's fulfillment network.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Robotics</span>
+              <span class="tag">Automation Systems</span>
+              <span class="tag">Design Engineering</span>
+              <span class="tag">5 Patents</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills-section" style="margin-bottom: 50px;">
-      <h2 class="section-title">Core Skills & Expertise</h2>
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="projects-grid">
+
+        <!-- Placeholder 1 -->
+        <div class="project-card coming-soon" data-animate>
+          <div class="project-status status-soon">Coming Soon</div>
+          <div class="project-name">Project One</div>
+          <p class="project-desc">Details coming soon as work is added to GitHub.</p>
+        </div>
+
+        <!-- Placeholder 2 -->
+        <div class="project-card coming-soon" data-animate>
+          <div class="project-status status-soon">Coming Soon</div>
+          <div class="project-name">Project Two</div>
+          <p class="project-desc">Details coming soon as work is added to GitHub.</p>
+        </div>
+
+        <!-- Placeholder 3 -->
+        <div class="project-card coming-soon" data-animate>
+          <div class="project-status status-soon">Coming Soon</div>
+          <div class="project-name">Project Three</div>
+          <p class="project-desc">Details coming soon as work is added to GitHub.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-header">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-rule"></div>
+      </div>
       <div class="skills-grid">
-        <div class="skill-category">
-          <div class="skill-category-title">Product Management</div>
-          <div class="skills-list">
-            <span class="skill-tag-alt">AI/ML Product Development</span>
-            <span class="skill-tag-alt">Platform & Workflow Design</span>
-            <span class="skill-tag-alt">Roadmap Strategy</span>
-            <span class="skill-tag-alt">Operations Automation</span>
-            <span class="skill-tag-alt">Cross-Functional Leadership</span>
-            <span class="skill-tag-alt">Stakeholder Management</span>
-            <span class="skill-tag-alt">Product Analytics</span>
+        <div class="skill-group" data-animate>
+          <div class="skill-group-title">Product</div>
+          <div class="skill-items">
+            <span class="skill-item">AI Product Development</span>
+            <span class="skill-item">Platform &amp; Workflow Design</span>
+            <span class="skill-item">Roadmap Strategy</span>
+            <span class="skill-item">Operations Automation</span>
+            <span class="skill-item">Stakeholder Management</span>
+            <span class="skill-item">People Management</span>
           </div>
         </div>
-        <div class="skill-category">
-          <div class="skill-category-title">Technical</div>
-          <div class="skills-list">
-            <span class="skill-tag-alt">SQL</span>
-            <span class="skill-tag-alt">Python</span>
-            <span class="skill-tag-alt">APIs & Integrations</span>
-            <span class="skill-tag-alt">Data Analysis</span>
-            <span class="skill-tag-alt">Prompt Engineering</span>
-            <span class="skill-tag-alt">Technical Documentation</span>
+        <div class="skill-group" data-animate>
+          <div class="skill-group-title">AI / ML</div>
+          <div class="skill-items">
+            <span class="skill-item">LLM Prompt Design</span>
+            <span class="skill-item">Computer Vision</span>
+            <span class="skill-item">Prompt Engineering</span>
+            <span class="skill-item">OpenAI · Claude · Gemini</span>
+            <span class="skill-item">Groq · Ollama</span>
+            <span class="skill-item">Adobe Firefly</span>
           </div>
         </div>
-        <div class="skill-category">
-          <div class="skill-category-title">Design</div>
-          <div class="skills-list">
-            <span class="skill-tag-alt">Rapid Prototyping</span>
-            <span class="skill-tag-alt">UX/UI Design</span>
-            <span class="skill-tag-alt">Journey Mapping</span>
-            <span class="skill-tag-alt">Wireframing</span>
-            <span class="skill-tag-alt">Design Thinking</span>
+        <div class="skill-group" data-animate>
+          <div class="skill-group-title">Technical</div>
+          <div class="skill-items">
+            <span class="skill-item">SQL</span>
+            <span class="skill-item">Python</span>
+            <span class="skill-item">APIs &amp; Integrations</span>
+            <span class="skill-item">Data Analysis</span>
+            <span class="skill-item">CAD / SolidWorks</span>
+            <span class="skill-item">Technical Documentation</span>
+          </div>
+        </div>
+        <div class="skill-group" data-animate>
+          <div class="skill-group-title">Design &amp; Tools</div>
+          <div class="skill-items">
+            <span class="skill-item">Figma · Rapid Prototyping</span>
+            <span class="skill-item">UX/UI Design</span>
+            <span class="skill-item">Journey Mapping</span>
+            <span class="skill-item">Jira · Confluence</span>
+            <span class="skill-item">Salesforce · Sprinklr</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="education-section" style="margin-bottom: 50px;">
-      <h2 class="section-title">Education</h2>
-      <div class="education-grid">
-        <div class="education-card">
-          <div class="education-degree">Master of Business Administration</div>
-          <div class="education-school">Arizona State University</div>
-          <div class="education-note">2019 • Strategy and Supply Chain Management</div>
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="section-header">
+        <h2 class="section-title">Education</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-degree">Master of Business Administration</div>
+          <div class="edu-school">Arizona State University</div>
+          <div class="edu-detail">2019 · Strategy and Supply Chain Management</div>
         </div>
-        <div class="education-card">
-          <div class="education-degree">Bachelor of Science in Civil Engineering</div>
-          <div class="education-school">Washington State University</div>
-          <div class="education-note">2014 • Steel Bridge, Concrete Canoe, Formula SAE</div>
+        <div class="edu-card">
+          <div class="edu-degree">Bachelor of Science in Civil Engineering</div>
+          <div class="edu-school">Washington State University</div>
+          <div class="edu-detail">2014 · Steel Bridge, Concrete Canoe, Formula SAE</div>
         </div>
       </div>
     </section>
-
   </div>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Chris Reynolds</span>
+      <div class="footer-links">
+        <a href="mailto:reynoldscg@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/reynoldscg" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Reynoldscg" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    function togglePhase(header) {
-      const phase = header.parentElement;
-      phase.classList.toggle('open');
+    // Accordion toggle
+    function toggleExp(btn) {
+      const item = btn.closest('.exp-item');
+      item.classList.toggle('open');
     }
 
-    // Add animation on scroll
+    // Scroll-triggered reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          // Stagger siblings
+          const siblings = [...entry.target.parentElement.children]
+            .filter(el => el.hasAttribute('data-animate'));
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
 
-    document.querySelectorAll('.phase, .skill-category, .education-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-    // Trigger initial animations
+    // Immediately show items already in view (esp. first accordion)
     setTimeout(() => {
-      document.querySelectorAll('.phase, .skill-category, .education-card').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+          observer.unobserve(el);
+        }
       });
-    }, 100);
+    }, 50);
   </script>
+
 </body>
 </html>
-
-
