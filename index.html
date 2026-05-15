@@ -395,12 +395,14 @@
 
     .project-link:hover { gap: 8px; }
 
-    .project-link svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      display: block;
     }
 
     /* ── Skills ────────────────────────────────────────────── */
@@ -703,11 +705,16 @@
       </div>
       <div class="projects-grid">
 
-        <!-- Placeholder 1 -->
-        <div class="project-card coming-soon" data-animate>
-          <div class="project-status status-soon">Coming Soon</div>
-          <div class="project-name">Project One</div>
-          <p class="project-desc">Details coming soon as work is added to GitHub.</p>
+        <!-- Wall Dashboard -->
+        <div class="project-card" data-animate>
+          <div class="project-status status-live">Personal Project</div>
+          <div class="project-name">Wall Dashboard</div>
+          <img class="project-thumb" src="https://raw.githubusercontent.com/Reynoldscg/Wall-Dashboard/main/Mock.png" alt="Wall Dashboard screenshot" loading="lazy">
+          <p class="project-desc">Self-hosted digital wall display running on a Raspberry Pi — live clock, weather &amp; AQI, rotating Dropbox photo slideshow, Google Calendar events, and real-time solar production from an APsystems ECU. Boots straight into Chromium kiosk mode on a minimal X server.</p>
+          <a class="project-link" href="https://github.com/Reynoldscg/Wall-Dashboard" target="_blank">
+            View on GitHub
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
 
         <!-- Placeholder 2 -->
