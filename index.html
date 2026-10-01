@@ -1,9 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chris Reynolds — Product Leader & AI Builder</title>
+  <script>document.documentElement.className = 'js';</script>
+  <title>Chris Reynolds · Staff Product Manager · AI &amp; Operations Automation</title>
+  <meta name="description" content="Staff Product Manager who turns expensive manual operations into AI-powered platforms. $50M+ in operational savings across Amazon, Google, and Collectors. 5 patents.">
+  <meta name="author" content="Chris Reynolds">
+  <meta name="theme-color" content="#1a5c55">
+  <link rel="canonical" href="https://reynoldscg.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a5c55'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='30' fill='%23fff'%3ECR%3C/text%3E%3C/svg%3E">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Chris Reynolds · Staff Product Manager, AI &amp; Operations Automation">
+  <meta property="og:description" content="$50M+ in operational savings across Amazon, Google, and Collectors. Led YouTube Help Center's support-intelligence platform; invented Amazon's ARSAW pick station; 5 patents.">
+  <meta property="og:url" content="https://reynoldscg.github.io/">
+  <meta property="og:site_name" content="Chris Reynolds">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Chris Reynolds · Staff Product Manager">
+  <meta name="twitter:description" content="AI and operations automation PM. Amazon, Google, Collectors. 5 patents.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Chris Reynolds",
+    "jobTitle": "Staff Product Manager",
+    "worksFor": { "@type": "Organization", "name": "Collectors" },
+    "url": "https://reynoldscg.github.io/",
+    "email": "mailto:reynoldscg@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Long Beach", "addressRegion": "CA" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Arizona State University" },
+      { "@type": "CollegeOrUniversity", "name": "Washington State University" }
+    ],
+    "sameAs": ["https://www.linkedin.com/in/reynoldscg", "https://github.com/Reynoldscg"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -218,6 +249,16 @@
       background: var(--faint);
       flex-shrink: 0;
     }
+
+    /* One-line highlight so a collapsed role still sells itself */
+    .exp-highlight {
+      font-size: 13.5px;
+      color: var(--mid);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .exp-highlight strong { color: var(--teal); font-weight: 600; }
+    .exp-item.open .exp-highlight { display: none; }
 
     .exp-chevron {
       width: 32px;
@@ -488,9 +529,34 @@
 
 
 
+    /* ── Footer ────────────────────────────────────────────── */
+    .footer {
+      margin-top: 8px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--faint);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+    .footer a { color: var(--teal); font-weight: 600; }
+
     /* ── Animations ────────────────────────────────────────── */
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content stays visible without JavaScript and when printed; the fade-in is an enhancement only. */
+    html.no-js .hero,
+    html.no-js [data-animate] { opacity: 1; transform: none; animation: none; }
+
+    @media print {
+      .hero, [data-animate] { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .exp-body { max-height: none !important; }
+      .exp-highlight, .exp-chevron { display: none !important; }
+      .exp-item, .project-card, .skill-group, .edu-card { break-inside: avoid; box-shadow: none; }
     }
 
     /* ── Mobile ────────────────────────────────────────────── */
@@ -509,12 +575,11 @@
       <h1 class="hero-name">Chris Reynolds</h1>
       <p class="hero-title">AI Product · Operations Automation · Platform Design</p>
       <p class="hero-summary">
-        I build AI-powered automation systems that turn expensive manual operations into scalable platforms.
-        At Google, I led the YouTube Help Center intelligence platform that deflected <strong>30%+ of all support contacts</strong>
-        before they reached a human agent — at $19 per contact, that deflection rate compounds into tens of millions in annual savings.
-        The combined operational impact from my work at Google, Amazon, and Collectors exceeds <strong>$50M</strong>.
-        I'm technical enough to prototype in Python and SQL, and experienced enough to know which problems
-        actually need AI and which ones need a better process.
+        I turn expensive manual operations into AI-powered platforms: <strong>more than $50M in operational savings</strong>
+        across Amazon, Google, and Collectors, from YouTube's help-center platform that deflects <strong>30%+ of support contacts</strong>
+        to ARSAW, the pick station in every Amazon Robotics fulfillment center. Today I lead a team of 3 PMs automating grading
+        at a 30,000-submission-a-day operation. I'm technical enough to prototype in Python and SQL, and experienced enough
+        to know which problems actually need AI and which ones need a better process.
       </p>
       <div class="hero-links">
         <a class="hero-link" href="mailto:reynoldscg@gmail.com">
@@ -529,9 +594,9 @@
           <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a class="hero-link" href="https://reynoldscg.github.io/" target="_blank">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          Website
+        <a class="hero-link" href="Chris_Reynolds_Resume.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+          Résumé (PDF)
         </a>
       </div>
     </section>
@@ -545,7 +610,7 @@
 
       <!-- Collectors -->
       <div class="exp-item open" data-animate>
-        <button class="exp-trigger" onclick="toggleExp(this)">
+        <button class="exp-trigger" onclick="toggleExp(this)" aria-expanded="true">
           <div class="exp-trigger-left">
             <span class="exp-company">Collectors</span>
             <span class="exp-meta">
@@ -553,8 +618,9 @@
               <span class="exp-meta-dot"></span>
               Santa Ana, CA
               <span class="exp-meta-dot"></span>
-              2024 – Present
+              Mar 2024 – Present
             </span>
+            <span class="exp-highlight">Leads 3 PMs · launched a multi-model AI grading pipeline · <strong>40% throughput increase</strong></span>
           </div>
           <div class="exp-chevron">
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
@@ -563,14 +629,13 @@
         <div class="exp-body">
           <div class="exp-inner">
             <p class="exp-role-desc">
-              Leading AI transformation of grading operations at a platform processing ~30,000 submissions per day. Manages a team of 3 PMs and mentors 2 additional product contributors.
+              Lead a team of 3 PMs, and mentor 2 more product contributors, driving the AI transformation of grading operations at the parent company of PSA, the world's largest collectibles authentication and grading service, processing ~30,000 submissions a day.
             </p>
             <ul class="exp-bullets">
-              <li>Architected a multi-model AI pipeline combining LLM-based image matching, counterfeit detection, and quality grading with computer vision QC — automating submission eligibility decisions that previously required manual expert review and were capping throughput at scale.</li>
-              <li>Delivered a <strong>40% throughput improvement</strong> by redesigning the end-to-end operational flow, combining AI/ML automation with a ground-up UX overhaul of the grading workflow.</li>
-              <li>Reduced mis-shipments and cross-team handoffs by <strong>20%</strong> through a workflow platform redesign across ~30k daily submissions, with measurable improvement to operational cost and customer satisfaction.</li>
-              <li>Consolidated five legacy desktop tools into a single unified operator platform, cutting new-hire training time by 40% and measurably improving operator morale.</li>
-              <li>Secured AI roadmap buy-in from Director through C-suite <strong>three weeks faster</strong> than prior process by prototyping features directly rather than writing specs first.</li>
+              <li>Defined and launched a <strong>multi-model AI pipeline</strong> (LLM-based image matching, counterfeit detection, quality grading, and computer-vision QC) that makes submission-eligibility decisions previously requiring manual expert review, removing the bottleneck that capped throughput.</li>
+              <li>Delivered a <strong>40% throughput increase</strong> by redesigning the end-to-end grading workflow, pairing the AI pipeline with a ground-up UX overhaul.</li>
+              <li>Consolidated five legacy desktop tools into a single operator platform: <strong>20% fewer mis-shipments</strong> and cross-team handoffs, <strong>40% less new-hire training time</strong>, and measurably higher operator morale.</li>
+              <li>Won AI roadmap approval from Director through C-suite <strong>three weeks faster</strong> than the prior process by shipping working prototypes instead of specs.</li>
             </ul>
             <div class="exp-tags">
               <span class="tag">AI/ML Product</span>
@@ -584,8 +649,8 @@
       </div>
 
       <!-- Google -->
-      <div class="exp-item" data-animate>
-        <button class="exp-trigger" onclick="toggleExp(this)">
+      <div class="exp-item open" data-animate>
+        <button class="exp-trigger" onclick="toggleExp(this)" aria-expanded="true">
           <div class="exp-trigger-left">
             <span class="exp-company">Google</span>
             <span class="exp-meta">
@@ -593,8 +658,9 @@
               <span class="exp-meta-dot"></span>
               Los Angeles, CA
               <span class="exp-meta-dot"></span>
-              2021 – 2024
+              Aug 2021 – Mar 2024
             </span>
+            <span class="exp-highlight">YouTube Help Center Support Intelligence · <strong>30%+ of support contacts deflected</strong> · tens of millions in annual cost avoidance</span>
           </div>
           <div class="exp-chevron">
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
@@ -603,13 +669,13 @@
         <div class="exp-body">
           <div class="exp-inner">
             <p class="exp-role-desc">
-              Product lead for YouTube Help Center Support Intelligence — AI-powered deflection and self-service automation at one of the world's highest-volume consumer support platforms.
+              Product lead for YouTube Help Center Support Intelligence: AI-driven deflection and self-service for one of the world's highest-volume consumer support operations.
             </p>
             <ul class="exp-bullets">
-              <li>Deployed pre-Gemini Google ML Infrastructure to power YouTube's help center personalization layer, deflecting <strong>30%+ of all support contacts</strong> before case creation — at $19 per contact, representing tens of millions in annual cost avoidance across YouTube's global support volume.</li>
-              <li>Designed the signal model that mined support history, behavioral trends, and engagement signals to predict and intercept high-intent users before they escalated to agent contact — without degrading resolution quality.</li>
-              <li>Built the ML audience segmentation model balancing automation aggressiveness against churn risk, protecting high-value account cohorts while expanding self-service coverage across high-volume, low-complexity contact types.</li>
-              <li>Owned support content accuracy and discoverability across multiple regions and languages, coordinating engineering, data science, and CX across three organizations without direct authority.</li>
+              <li>Launched the ML personalization layer for YouTube's help center on Google's internal ML infrastructure, deflecting <strong>30%+ of all support contacts</strong> before case creation. At $19 per contact, that is <strong>tens of millions of dollars</strong> in annual cost avoidance.</li>
+              <li>Defined the intent-prediction signal model with Data Science, mining support history, behavioral trends, and engagement signals to intercept high-intent users before agent contact without degrading resolution quality.</li>
+              <li>Drove the audience-segmentation strategy that balanced automation aggressiveness against churn risk, protecting high-value cohorts while expanding self-service across high-volume, low-complexity contact types.</li>
+              <li>Owned help-content accuracy and discoverability across regions and languages, aligning engineering, data science, and CX teams across three organizations without direct authority.</li>
             </ul>
             <div class="exp-tags">
               <span class="tag">ML Infrastructure</span>
@@ -623,7 +689,7 @@
 
       <!-- Amazon Ring -->
       <div class="exp-item" data-animate>
-        <button class="exp-trigger" onclick="toggleExp(this)">
+        <button class="exp-trigger" onclick="toggleExp(this)" aria-expanded="false">
           <div class="exp-trigger-left">
             <span class="exp-company">Amazon (Ring)</span>
             <span class="exp-meta">
@@ -631,8 +697,9 @@
               <span class="exp-meta-dot"></span>
               Los Angeles, CA
               <span class="exp-meta-dot"></span>
-              2020 – 2021
+              Sep 2020 – Aug 2021
             </span>
+            <span class="exp-highlight">Launched Neighbor Dashboard for Ring's global support org · <strong>29% lower triage volume</strong> · <strong>35% higher resolution efficiency</strong></span>
           </div>
           <div class="exp-chevron">
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
@@ -641,12 +708,12 @@
         <div class="exp-body">
           <div class="exp-inner">
             <p class="exp-role-desc">
-              Owned CRM and support automation for Ring's global customer experience organization, serving agents across 6 languages worldwide.
+              Owned CRM and support automation for Ring's global customer experience organization, serving agents in 6 languages.
             </p>
             <ul class="exp-bullets">
-              <li>Designed and launched <strong>Neighbor Dashboard</strong>, a custom Salesforce-integrated agent workstation that replaced Ring's legacy Admin Panel — surfacing the most diagnostically relevant customer context upfront, cutting triage volume by 29% and improving resolution efficiency by 35%.</li>
-              <li>Built automatic contact-intent detection that surfaced predicted reason-for-contact to agents in real time, enabling faster diagnosis and deflection of the most common support categories before case escalation.</li>
-              <li>Led enterprise-wide PII masking across all agent tooling and defined the multi-year product strategy for integrating Ring's security and camera system data into the global support platform.</li>
+              <li>Launched <strong>Neighbor Dashboard</strong>, a Salesforce-integrated agent workstation that replaced Ring's legacy Admin Panel by surfacing the most diagnostically relevant customer context first: <strong>29% lower triage volume</strong> and <strong>35% higher resolution efficiency</strong>.</li>
+              <li>Shipped real-time contact-intent detection that showed agents the predicted reason for contact, speeding diagnosis and deflecting the most common categories before escalation.</li>
+              <li>Led enterprise-wide PII masking across all agent tooling and defined the multi-year strategy for bringing Ring device and camera data into the global support platform.</li>
             </ul>
             <div class="exp-tags">
               <span class="tag">CRM</span>
@@ -660,16 +727,17 @@
 
       <!-- Amazon Robotics -->
       <div class="exp-item" data-animate>
-        <button class="exp-trigger" onclick="toggleExp(this)">
+        <button class="exp-trigger" onclick="toggleExp(this)" aria-expanded="false">
           <div class="exp-trigger-left">
             <span class="exp-company">Amazon</span>
             <span class="exp-meta">
-              Sr. Innovation &amp; Design Engineer — Robotics &amp; Make-on-Demand
+              Sr. Innovation &amp; Design Engineer, Robotics &amp; Make-on-Demand
               <span class="exp-meta-dot"></span>
               Seattle, WA
               <span class="exp-meta-dot"></span>
-              2015 – 2020
+              Dec 2015 – Sep 2020
             </span>
+            <span class="exp-highlight">Invented ARSAW, the pick station in every Amazon Robotics FC · <strong>5 patents</strong> · designed 11 facilities</span>
           </div>
           <div class="exp-chevron">
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
@@ -678,12 +746,12 @@
         <div class="exp-body">
           <div class="exp-inner">
             <p class="exp-role-desc">
-              Led end-to-end design of fulfillment and robotics systems for Amazon's global network, managing a team of 4 engineers.
+              Led end-to-end design of fulfillment and robotics systems for Amazon's global network; managed a team of 4 engineers.
             </p>
             <ul class="exp-bullets">
-              <li>Invented and led full design of the <strong>ARSAW</strong>, Amazon's primary semi-automated pick station deployed across all Robotics Fulfillment Centers globally — delivering <strong>$0.001 per-unit cost savings</strong> that compound to millions annually across billions of units processed; holds <strong>5 patents</strong> from this system and related innovations.</li>
-              <li>Personally led building design for <strong>11 Amazon facilities</strong> from concept through launch — spanning full-scale Amazon Robotics, make-on-demand, and manual operations — covering topology optimization, site planning, operational flow, vendor coordination, and execution.</li>
-              <li>Standardized bespoke automation solutions into reusable design systems adopted globally across Amazon's fulfillment network.</li>
+              <li>Invented and led the design of <strong>ARSAW</strong>, Amazon's primary semi-automated pick station, now deployed in every Amazon Robotics fulfillment center worldwide: <strong>$0.011 saved per unit</strong> across billions of units a year. Holds <strong>5 patents</strong> from this system and related work.</li>
+              <li>Led building design for <strong>11 Amazon facilities</strong> from concept through launch, spanning full-scale robotics, make-on-demand, and manual operations: topology optimization, site planning, operational flow, vendor coordination, and execution.</li>
+              <li>Standardized bespoke automation into reusable design systems adopted across Amazon's global fulfillment network.</li>
             </ul>
             <div class="exp-tags">
               <span class="tag">Robotics</span>
@@ -741,23 +809,24 @@
         <div class="skill-group" data-animate>
           <div class="skill-group-title">Product</div>
           <div class="skill-items">
-            <span class="skill-item">AI Product Development</span>
-            <span class="skill-item">Platform &amp; Workflow Design</span>
-            <span class="skill-item">Roadmap Strategy</span>
+            <span class="skill-item">Product Strategy &amp; Roadmaps</span>
+            <span class="skill-item">0-to-1 Launches</span>
             <span class="skill-item">Operations Automation</span>
+            <span class="skill-item">Platform &amp; Workflow Design</span>
+            <span class="skill-item">Product Analytics</span>
             <span class="skill-item">People Management</span>
-            <span class="skill-item">Stakeholder Management (Director–C-Suite)</span>
+            <span class="skill-item">Exec Stakeholder Management (Director to C-Suite)</span>
           </div>
         </div>
         <div class="skill-group" data-animate>
           <div class="skill-group-title">AI / ML</div>
           <div class="skill-items">
-            <span class="skill-item">LLM Pipeline Design</span>
-            <span class="skill-item">Computer Vision Systems</span>
-            <span class="skill-item">Prompt Engineering</span>
-            <span class="skill-item">OpenAI · Claude · Gemini</span>
-            <span class="skill-item">Groq · Ollama</span>
-            <span class="skill-item">Adobe Firefly</span>
+            <span class="skill-item">LLM Product Design</span>
+            <span class="skill-item">Evals &amp; Quality Measurement</span>
+            <span class="skill-item">Computer Vision QC</span>
+            <span class="skill-item">Prompt Design</span>
+            <span class="skill-item">Model Selection, Cost &amp; Latency Tradeoffs</span>
+            <span class="skill-item">Rapid AI-Assisted Prototyping</span>
           </div>
         </div>
         <div class="skill-group" data-animate>
@@ -771,13 +840,12 @@
           </div>
         </div>
         <div class="skill-group" data-animate>
-          <div class="skill-group-title">Design &amp; Tools</div>
+          <div class="skill-group-title">Tools</div>
           <div class="skill-items">
-            <span class="skill-item">Figma · Rapid AI-Assisted Prototyping</span>
-            <span class="skill-item">UX/UI Design · Journey Mapping</span>
+            <span class="skill-item">Figma</span>
             <span class="skill-item">Jira · Confluence</span>
             <span class="skill-item">Salesforce · Sprinklr</span>
-            <span class="skill-item">CAD Software</span>
+            <span class="skill-item">LLM APIs (Anthropic, OpenAI, Google)</span>
           </div>
         </div>
       </div>
@@ -802,6 +870,11 @@
         </div>
       </div>
     </section>
+
+    <footer class="footer">
+      <span>&copy; 2026 Chris Reynolds &middot; Updated September 2026</span>
+      <span><a href="Chris_Reynolds_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a> &middot; <a href="mailto:reynoldscg@gmail.com">reynoldscg@gmail.com</a></span>
+    </footer>
   </div>
 
 
@@ -810,7 +883,8 @@
     // Accordion toggle
     function toggleExp(btn) {
       const item = btn.closest('.exp-item');
-      item.classList.toggle('open');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
     // Scroll-triggered reveal
